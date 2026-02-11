@@ -12,13 +12,13 @@
   tasks:
   - name: ec2 creation tasks
     amazon.aws.ec2_instance:
-      name: "{{ instance_name }} - {{ env }}"
+      name: "{{ item }} - {{ env }}"
       instance_type: "{{ instance_type }}"
       security_group: "{{ sg_id }}"
       image_id: "{{ ami_id }}"
       tags: 
         Project: roboshop
-        Name: "{{ instance_name }} - {{ env }}"
+        Name: "{{ item }} - {{ env }}"
         env: "{{ env }}"
     loop: "{{ instance_name }}"
 
