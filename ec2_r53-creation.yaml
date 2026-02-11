@@ -1,0 +1,25 @@
+- name: create AWS ec2 & R53
+  hosts: local
+  connection: local
+  vars:
+    instance_type: t3.micro
+    ami_id: ami-0220d79f3f480ecf5
+    sg_id: sg-0fd437546c9954eac
+    env: dev
+    instance_name:
+      - mongodb
+      - catalogue
+  tasks:
+  - name: ec2 creation tasks
+    amazon.aws.ec2_instance:
+      name: "{{ instance_name }} - {{ env }}"
+      instance_type: "{{ instance_type }}"
+      security_group: "{{ sg_id }}"
+      image_id: "{{ ami_id }}"
+      tags: 
+        Project: roboshop
+        Name: "{{ instance_name }} - {{ env }}"
+        env: "{{ env }}"
+    loop: "{{ instance_name }}"
+
+
