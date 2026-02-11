@@ -5,6 +5,7 @@
     instance_type: t3.micro
     ami_id: ami-0220d79f3f480ecf5
     sg_id: sg-0fd437546c9954eac
+    domain: jaswanthdevops.online
     env: dev
     instance_name:
       - mongodb
@@ -25,3 +26,13 @@
   - name: Print ec2 output
     ansible.builtin.debug:
       msg: "{{ ec2_output }}"
+  - name: create route53 records
+    amazon.aws.route53:
+      state: present
+      zone: "{{ domain }}"
+      record: "{{ item.item }} - {{ env }}.{{ domain }}" #mongo-dev.jaswanthdevops.online
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].private_ip_address }}"
+      wait: true
+      loop: "{{ ec2_output.results }}"
