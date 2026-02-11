@@ -21,5 +21,5 @@
         Name: "{{ item }} - {{ env }}"
         env: "{{ env }}"
     loop: "{{ instance_name }}"
-
+    register: ec2_output
 
