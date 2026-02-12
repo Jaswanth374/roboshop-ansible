@@ -19,4 +19,4 @@
     ansible.builtin.service:
       name: mongod
       state: restarted
-      enable: true
+      enabled: true
