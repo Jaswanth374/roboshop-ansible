@@ -28,6 +28,11 @@
       path: /app
       state: absent
   
+  - name: Remove the existing zip file
+    ansible.builtin.file:
+      path: /tmp/catalogue.zip
+      state: absent
+  
   - name: Create the app folder
     ansible.builtin.file:
       path: /app
@@ -42,6 +47,7 @@
     ansible.builtin.unarchive:
       src: /tmp/catalogue.zip
       dest: /app
+      remote_src: true
   
   - name: Install the dependencies
     community.general.npm:
