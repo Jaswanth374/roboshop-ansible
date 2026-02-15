@@ -1,5 +1,5 @@
 - name: Install redis for roboshop Project
-  hosts: local
+  hosts: redis
   become: yes
   tasks:
   - name: enable redis 7

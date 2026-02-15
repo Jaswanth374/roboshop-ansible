@@ -22,6 +22,7 @@
       shell: /sbin/nologin
       home: /app
       comment: roboshop system user
+      system: yes
   
   - name: Remove the existing app folder
     ansible.builtin.file:
@@ -60,7 +61,6 @@
   
   - name: Perform system daemon reload
     ansible.builtin.systemd_service:
-      name: catalogue
       daemon_reload: true
 
   - name: restart the catalogue services
