@@ -33,12 +33,13 @@
     ansible.builtin.get_url:
       url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip 
       dest: /tmp/shipping.zip
-      remote_src: true
+      
 
   - name: unzip the shipping code
     ansible.builtin.unarchive:
       src: /tmp/shipping.zip
       dest: /app
+      remote_src: yes
 
   - name: install dependencies
     ansible.builtin.command: mvn clean package

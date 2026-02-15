@@ -37,12 +37,13 @@
     ansible.builtin.get_url:
       url: https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip 
       dest: /tmp/cart.zip
-      remote_src: true
+      
 
   - name: unzip the cart code
     ansible.builtin.unarchive:
       src: /tmp/cart.zip
       dest: /app
+      remote_src: yes
 
   - name: Install the dependencies
     community.general.npm:
