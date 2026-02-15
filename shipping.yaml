@@ -4,8 +4,11 @@
   tasks: 
   - name: Install java
     ansible.builtin.dnf:
-      name: maven
+      name: "{{ item }}"
       state: present
+    loop:
+    - maven
+    - mysql
   
   - name: create system user id
     ansible.builtin.user:
@@ -67,6 +70,7 @@
     loop:
     - cryptography
     - PyMySQL
+
 
   - name: import shipping data
     community.mysql.mysql_db:
