@@ -1,5 +1,5 @@
 - name: create AWS ec2 & R53
-  hosts: all
+  hosts: localhost
   connection: local
   vars:
     instance_type: t3.micro
